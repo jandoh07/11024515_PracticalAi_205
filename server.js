@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const Patient = require('./models/patientModel');
+const Encounter = require('./models/startEncounterModel')
 const app = express();
 
 app.use(express.json())
@@ -9,6 +10,18 @@ app.post("/patient", async(req, res) => {
     try {
         const patient = await Patient.create(req.body);
         res.status(200).json(patient)
+        
+    } catch (error) {
+        console.log(error.message);
+        res.status(500).json({message: error.message});
+    }
+});
+
+
+app.post("/encounter", async(req, res) => {
+    try {
+        const encounter = await Encounter.create(req.body);
+        res.status(200).json(encounter)
         
     } catch (error) {
         console.log(error.message);

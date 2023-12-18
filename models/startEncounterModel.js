@@ -10,10 +10,6 @@ const encounterSchema = mongoose.Schema(
             type: new Date(),
             required: true,
         },
-        Time:{
-            type: String,
-            required: true,
-        },
         TypeOfEncounter:{
             type: String,
             required: true,
@@ -24,6 +20,6 @@ const encounterSchema = mongoose.Schema(
     }
 )
 
-const Patient = mongoose.model('Patient', patientSchema);
+const Encounter = mongoose.model('Encounter', encounterSchema);
 
-module.exports = Patient;
+module.exports = Encounter;

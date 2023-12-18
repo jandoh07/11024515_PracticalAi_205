@@ -1,7 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const Patient = require('./models/patientModel');
-const Encounter = require('./models/startEncounterModel')
+const Encounter = require('./models/startEncounterModel');
+const Vitals = require('./models/patientVitalsModel');
 const app = express();
 
 app.use(express.json())
@@ -27,7 +28,18 @@ app.post("/encounter", async(req, res) => {
         console.log(error.message);
         res.status(500).json({message: error.message});
     }
-})
+});
+
+app.post("/vitals", async(req, res) => {
+    try {
+        const vitals = await Vitals.create(req.body);
+        res.status(200).json(vitals)
+        
+    } catch (error) {
+        console.log(error.message);
+        res.status(500).json({message: error.message});
+    }
+});
 
 
 mongoose.connect('mongodb+srv://amjoshua59:jandoh@jandoh.rvgbwcf.mongodb.net/')

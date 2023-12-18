@@ -7,9 +7,13 @@ const encounterSchema = mongoose.Schema(
             required: true,
         },
         Date:{
-            type: new Date(),
+            type: String,
             required: true,
         },
+        Time:{
+            type: String,
+            required: true,
+        },    
         TypeOfEncounter:{
             type: String,
             required: true,
